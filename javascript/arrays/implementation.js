@@ -15,31 +15,49 @@ class MyArray{
         return result + "]"
     }
 
-    get(x){
-        if(x>=this.length || x<0){
+    get(index){
+        if(index>=this.length || index<0){
             return "Array Index Out Of Bounds"
         }
         else{
-            return this.data[x]
+            return this.data[index]
         }
     }
 
-    push(x){
-        this.data[this.length] = x
+    push(item){
+        this.data[this.length] = item
         this.length++
+        return this.length
     }
 
     pop(){
-        delete this.data[this.length-1]
-        this.length--
+        if(this.length>0){
+            const item = this.data[this.length-1]
+            delete this.data[this.length-1]
+            this.length--
+            return item
+        }
+    }
+
+    delete(index){
+        if(index>0 && index<this.length){
+            const item = this.data[index]
+            for(let i=index; i<this.length-1; i++){
+                this.data[i] = this.data[i+1]
+            }
+            delete this.data[this.length-1]
+            this.length--
+            return item
+        }
+        else{
+            return "Array Index Out Of Bounds"
+        }
     }
 }
 
-let obj1 = new MyArray(2, 4, 5, 7)
+let obj1 = new MyArray(1, 5, 6, 7)
 obj1.push(10)
 obj1.push(11)
-obj1.pop()
-obj1.pop()
-obj1.pop()
 obj1.push(10)
+obj1.delete(2)
 console.log(obj1.display())
