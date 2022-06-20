@@ -78,6 +78,7 @@ class LinkedList{
             move.prev.next = move.next
             move.next.prev = move.prev
         }
+        this.length--
     }
 }
 
