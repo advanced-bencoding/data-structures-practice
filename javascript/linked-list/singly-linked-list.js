@@ -90,6 +90,7 @@ class LinkedList{
         else{
             this.reverse(currentNode.next, currentNode)
             currentNode.next = prevNode
+            this.tail = currentNode
         }  
     }
 }
