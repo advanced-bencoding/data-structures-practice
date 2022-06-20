@@ -82,6 +82,16 @@ class LinkedList{
             move = move.next
         }
     }
+
+    reverse = (currentNode, prevNode) =>{
+        if(currentNode===null){
+            this.head = prevNode
+        }
+        else{
+            this.reverse(currentNode.next, currentNode)
+            currentNode.next = prevNode
+        }  
+    }
 }
 
 class Node{
@@ -99,6 +109,7 @@ list.append(new Node(16))
 list.prepend(new Node(3))
 list.insert(2, new Node(69))
 list.delete(0)
+list.reverse(list.head, null)
 
 list.display()
 console.log("length:", list.length)
