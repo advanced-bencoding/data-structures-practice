@@ -37,40 +37,38 @@ class Tree{
 
     lookup(data){
         if(this.root!=null){
-            let cursor = this.root;
+            let cursor = this.root, prev=null;
             while(cursor!=null){
                 if(cursor.data>data){
+                    prev = cursor
                     cursor = cursor.left
                 }
                 else if(cursor.data<data){
+                    prev = cursor
                     cursor = cursor.right
                 }
                 else{
                     console.log("Node with value", data, "exists")
-                    return cursor
+                    break
                 }
             }
             if(cursor==null){
                 console.log("Node with value", data, "does not exist")
             }
-            return null
+            return [cursor, prev]
         }
     }
 
     remove(data){
-        node = lookup(data)
-        if(node!=null){
-            findSucessor(node)
-        }
-        else{
-            console.log("The element does not exist. no node to remove.")
-        }
-    }
-
-    findSucessor(node){
-        let cursor = node, prev
-        while(cursor!=null){
-            
+        let node = this.lookup(data)
+        if(node[0]!=null){
+            if(node[0].left==null && node[0].right==null){
+                node[1].left = null
+                node[1].right = null
+            }
+            else{
+                this.preOrder(node[0])
+            }
         }
     }
 }
@@ -85,7 +83,7 @@ class Node{
 
 const bst = new Tree()
 
-let arr = [4,5,8,3,2,1,10,15,7]
+let arr = [8,7,10,3,1,2,4,-1,9,13,20,12,11]
 
 arr.forEach((i)=>{
     bst.insert(new Node(i))
@@ -95,3 +93,4 @@ bst.preOrder(bst.root)
 
 bst.lookup(100)
 bst.lookup(5)
+bst.remove(3)
