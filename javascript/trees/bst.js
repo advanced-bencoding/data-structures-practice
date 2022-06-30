@@ -71,6 +71,38 @@ class Tree{
             }
         }
     }
+
+    breadthFirstSearch(){
+        let queue = []
+        let currentNode = this.root
+        queue.push(currentNode)
+        console.log("***BFS TRAVERSAL***")
+        while(queue.length>0){
+            currentNode = queue.shift()
+            console.log(currentNode.data)
+            if(currentNode.left){
+                queue.push(currentNode.left)
+            }
+            if(currentNode.right){
+                queue.push(currentNode.right)
+            }
+        }
+    }
+
+    depthFirstSearch(){
+        let stack = []
+        let currentNode = this.root
+        console.log("**** DFS Traversal ****")
+        stack.push(currentNode)
+        while(stack.length>0){
+            currentNode = stack.pop()
+            console.log(currentNode.data)
+            if(currentNode.right)
+                stack.push(currentNode.right)
+            if(currentNode.left)
+                stack.push(currentNode.left)        
+        }
+    }
 }
 
 class Node{
@@ -89,8 +121,9 @@ arr.forEach((i)=>{
     bst.insert(new Node(i))
 })
 
-bst.preOrder(bst.root)
+//bst.preOrder(bst.root)
 
-bst.lookup(100)
-bst.lookup(5)
-bst.remove(3)
+//bst.lookup(100)
+//bst.lookup(5)
+bst.breadthFirstSearch()
+bst.depthFirstSearch()
