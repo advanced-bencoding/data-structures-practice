@@ -57,6 +57,7 @@ class BinaryTree{
     }
 
     public static void main(String[] args) {
+        //Array Representation of binary tree: the left child of kth element is 2k + 1, the right child is 2k + 2, -1 denotes null entry
         int[] a = new int[]{1, -1, 2, -1, -1, 4, 3, -1, -1, -1, -1, 5};
         /*
                       root
