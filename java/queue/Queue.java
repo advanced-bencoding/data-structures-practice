@@ -1,6 +1,4 @@
-package queue;
-
-public class Queue {
+class Queue {
     Node front, rear;
 
     Queue(){
@@ -34,12 +32,7 @@ public class Queue {
             System.out.println("Queue Underflow");
         }
         else{
-            Node cursor = front;
-            while(cursor.next!=rear){
-                cursor = cursor.next;
-            }
-            rear = cursor;
-            rear.next = null;
+            front = front.next;
         }
     }
 
@@ -49,10 +42,21 @@ public class Queue {
         }
         else{
             Node cursor = front;
+            System.out.println("Displaying Queue data:");
             while(cursor!=null){
                 System.out.println(cursor.data);
                 cursor = cursor.next;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Queue q1 = new Queue();
+        q1.append(23);
+        q1.append(87);
+        q1.append(97);
+        q1.display();
+        q1.dequeue();
+        q1.display();
     }
 }
