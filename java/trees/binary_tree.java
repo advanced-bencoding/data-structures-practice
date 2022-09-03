@@ -48,11 +48,27 @@ class BinaryTree{
         return result;
     }
 
-    void dfs(Node root){
+    void recursivePreOrder(Node root){
         if(root!=null){
             System.out.println(root.data);
-            dfs(root.left);
-            dfs(root.right);
+            recursivePreOrder(root.left);
+            recursivePreOrder(root.right);
+        }
+    }
+
+    void recursivePostOrder(Node root){
+        if(root!=null){
+            recursivePostOrder(root.left);
+            recursivePostOrder(root.right);
+            System.out.println(root.data);
+        }
+    }
+
+    void recursiveInOrder(Node root){
+        if(root!=null){
+            recursiveInOrder(root.left);
+            System.out.println(root.data);
+            recursiveInOrder(root.right);
         }
     }
 
@@ -72,6 +88,6 @@ class BinaryTree{
                 
         BinaryTree tree = arrayToTree(a);
         System.out.println("Printing tree in pre order traversal:");
-        tree.dfs(tree.root);
+        tree.recursivePreOrder(tree.root);
     }
 }
