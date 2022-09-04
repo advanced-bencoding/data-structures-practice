@@ -139,14 +139,13 @@ class BinaryTree{
         //Array Representation of binary tree: the left child of kth element is 2k + 1, the right child is 2k + 2, -1 denotes null entry
         int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, -1, -1, 8, -1, -1, -1, 9, 10};
         /*
-                      root
-                        1
+                                    1
 
-                NULL         2
+                        2                       3
 
-                          4     3
-
-                       5
+                    4       5               6       7
+                    
+                          8                       9   10
          */
         BinaryTree tree = arrayToTree(a);
         System.out.println("Printing tree in recursive pre order traversal:");
