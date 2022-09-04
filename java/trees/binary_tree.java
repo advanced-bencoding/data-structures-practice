@@ -1,6 +1,6 @@
 import java.util.Queue;
+import java.util.Stack;
 import java.util.LinkedList;
-
 class BinaryTree{
     Node root;
 
@@ -72,9 +72,54 @@ class BinaryTree{
         }
     }
 
+    void iterativePreOrder(){
+        Node cursor = root;
+        Stack<Node> s = new Stack<>();
+        s.push(root);
+
+        System.out.println("Printing tree in iterative pre order:");
+        while(s.size()>0){
+            cursor = s.pop();
+            System.out.println(cursor.data);
+            if(cursor.right!=null){
+                s.push(cursor.right);
+            }
+            if(cursor.left!=null){
+                s.push(cursor.left);
+            }
+        }
+    }
+
+    void iterativePostOrder(){
+        Node cursor = root;
+        Stack<Node> s = new Stack<>();
+        Stack<Node> reverse = new Stack<>();
+        s.push(root);
+
+        while(s.size()>0){
+            cursor = s.pop();
+            reverse.push(cursor);
+            
+            if(cursor.left!=null){
+                s.push(cursor.left);
+            }
+
+            if(cursor.right!=null){
+                s.push(cursor.right);
+                
+            }
+            
+        }
+
+        System.out.println("Printing tree in iterative post order:");
+        while(reverse.size()>0){
+            System.out.println(reverse.pop().data);
+        }
+    }
+
     public static void main(String[] args) {
         //Array Representation of binary tree: the left child of kth element is 2k + 1, the right child is 2k + 2, -1 denotes null entry
-        int[] a = new int[]{1, -1, 2, -1, -1, 4, 3, -1, -1, -1, -1, 5};
+        int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, -1, -1, 8, -1, -1, -1, 9, 10};
         /*
                       root
                         1
@@ -85,9 +130,12 @@ class BinaryTree{
 
                        5
          */
-                
         BinaryTree tree = arrayToTree(a);
-        System.out.println("Printing tree in pre order traversal:");
+        System.out.println("Printing tree in recursive pre order traversal:");
         tree.recursivePreOrder(tree.root);
+        tree.iterativePreOrder();
+        System.out.println("Printing tree in recursive post order traversal:");
+        tree.recursivePostOrder(tree.root);
+        tree.iterativePostOrder();
     }
 }
