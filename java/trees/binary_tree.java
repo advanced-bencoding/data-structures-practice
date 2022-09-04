@@ -117,6 +117,24 @@ class BinaryTree{
         }
     }
 
+    void iterativeInOrder(){
+        Stack<Node> s = new Stack<>();
+        Node cursor = root;
+        
+        System.out.println("Printing tree in iterative in order:");
+        while(cursor!=null || s.size()>0){
+            while(cursor!=null){
+                s.push(cursor);
+                cursor = cursor.left;
+            }
+
+            cursor = s.pop();
+            System.out.println(cursor.data);
+            cursor = cursor.right;
+        }
+
+    }
+
     public static void main(String[] args) {
         //Array Representation of binary tree: the left child of kth element is 2k + 1, the right child is 2k + 2, -1 denotes null entry
         int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, -1, -1, 8, -1, -1, -1, 9, 10};
@@ -137,5 +155,8 @@ class BinaryTree{
         System.out.println("Printing tree in recursive post order traversal:");
         tree.recursivePostOrder(tree.root);
         tree.iterativePostOrder();
+        System.out.println("Printing tree in recursive in order traversal:");
+        tree.recursiveInOrder(tree.root);
+        tree.iterativeInOrder();
     }
 }
