@@ -135,6 +135,21 @@ class BinaryTree{
 
     }
 
+    void breadthFirstSearch(){
+        Queue<Node> bfs = new LinkedList<>();
+        Node cursor = root;
+        System.out.println("Printing Breadth First Traversal:");
+        bfs.add(cursor);
+        while(bfs.size()>0){
+            cursor = bfs.remove();
+            System.out.print(cursor.data+" ");
+            if(cursor.left!=null)
+                bfs.add(cursor.left);
+            if(cursor.right!=null)
+                bfs.add(cursor.right);
+        }
+    }
+
     public static void main(String[] args) {
         //Array Representation of binary tree: the left child of kth element is 2k + 1, the right child is 2k + 2, -1 denotes null entry
         int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, -1, -1, 8, -1, -1, -1, 9, 10};
@@ -157,5 +172,6 @@ class BinaryTree{
         System.out.println("Printing tree in recursive in order traversal:");
         tree.recursiveInOrder(tree.root);
         tree.iterativeInOrder();
+        tree.breadthFirstSearch();
     }
 }
